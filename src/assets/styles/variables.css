@@ -1,0 +1,18 @@
+:root,
+html,
+body {
+  --bt-theme-primary: #007bff;
+  --bt-theme-sidebar-bg: #f5f6fa;
+  --bt-theme-appbar-bg: #f6f7fa;
+  --bt-theme-border-color: #dcdde1;
+  --bt-theme-content-bg: white;
+  /* --bt-theme-content-bg: #d3d4d6; */
+  --bt-theme-white: #fff;
+  --bt-expanded-row-bg: #f8f8f8;
+  --bt-border-color: #dcdde1;
+}
+
+.v-theme--light {
+  --v-theme-primary: 125, 29, 96 !important;
+
+}
