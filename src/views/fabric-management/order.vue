@@ -145,16 +145,16 @@
 					<v-tooltip v-else :width="128" :height="128" location="top" content-class="pa-0">
 						<template v-slot:activator="{ props }">
 							<v-chip v-bind="props" class="d-flex align-center" size="x-small" variant="outlined" color="primary py-2">
-								<v-img
-									:src="item.fabricType.color?.images?.[2]?.path || item.fabricType.color?.images?.[0]?.path"
-									width="16"
-									height="16"
-									class="rounded mr-1"
-									cover />
+	              			<v-img
+                :src="BASE_URL + (item.fabricType.color?.images?.[2]?.path || item.fabricType.color?.images?.[0]?.path)"
+                width="16"
+                height="16"
+                class="rounded mr-1"
+                cover />
 								{{ item.fabricType.color.name }}
 							</v-chip>
 						</template>
-						<v-img :src="item.fabricType.color?.images?.[0]?.path" width="128" height="128" cover class="rounded border shadow-sm border-gray" />
+            <v-img :src="BASE_URL + item.fabricType.color?.images?.[2]?.path" width="128" height="128" cover class="rounded border shadow-sm border-gray" />
 					</v-tooltip>
 				</div>
 			</template>
@@ -452,6 +452,7 @@ import { ref, watchEffect, onMounted, watch, reactive } from "vue"
 import { toast } from "vue3-toastify"
 import { rules } from "../../../config/rules"
 import dayjs from "dayjs"
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 import ConfirmBox from "../../components/ConfirmBox.vue"
 import BtModal from "../../components/BtModal.vue"

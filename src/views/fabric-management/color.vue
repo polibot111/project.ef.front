@@ -22,7 +22,15 @@
 				</v-toolbar>
 			</template>
 			<template v-slot:item.images="{ item }:any">
-				<v-img v-if="item?.images?.[0]?.path" :src="item.images?.[0]?.path" width="32" height="32" class="rounded" cover />
+      <v-img
+  v-if="item?.images?.[2]?.path && !item.images[2].path.includes('C:\\')"
+  :src="BASE_URL + item.images[2].path"
+  width="32"
+  height="32"
+  class="rounded"
+  cover
+/>
+
 			</template>
 
 			<template v-slot:item.rgbCode="{ item }:any">
@@ -91,7 +99,7 @@
 								show-size
 								:rules="[
 									(v) => (v || model.FormFile) || 'Renk kodu veya resim yüklenmelidir',
-									(v) => !v || v[0]?.size <= 10000000 || 'Dosya boyutu 10 MB\'den büyük olamaz'
+									(v) => !v || v.size <= 10000000 || 'Dosya boyutu 10 MB\'den büyük olamaz'
 								]">
 								<template v-slot:selection="{ fileNames }">
 									<template v-for="fileName in fileNames" :key="fileName">
@@ -122,6 +130,9 @@
 import { ref, watchEffect, onMounted, watch } from "vue";
 import { toast } from "vue3-toastify";
 import { rules } from "../../../config/rules";
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 
 import BtModal from "../../components/BtModal.vue";
 // import { useFetch } from "../../composables/useFetch";
@@ -260,7 +271,7 @@ const handleSubmit = async () => {
     dialog.value.loading = true;
     const url =
       dialog.value.type === "new"
-        ? "https://byozcetekstil.azurewebsites.net/api/Color/AddColors"
+        ? "https://localhost:7142/api/Color/AddColors"
         : "/Color/UpdateColors";
 
     const formData = new FormData();

@@ -10,4 +10,10 @@ export const rules = {
     console.log('file size', v.size);
     return v.size <= 10000000 || "Dosya boyutu 10 MB'den büyük olamaz"
   },
+  positiveNumber: (v: string) => {
+  const num = parseFloat(v);
+  return (!isNaN(num) && num >= 0) || "0 veya pozitif bir sayı girin";
+  },
 };
+
+

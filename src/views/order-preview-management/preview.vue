@@ -327,9 +327,7 @@
 									density="compact"
 									variant="outlined"
 									:disabled="toWorkshop.loading"
-									hide-details="auto"
-									persistent-hint
-									:hint="`En Fazla ${fabricTypes.stockMeterCount} Metre Eklenebilir`">
+									hide-details="auto">
 								</VTextField>
 								<VTextField
 									type="number"
@@ -339,9 +337,7 @@
 									density="compact"
 									variant="outlined"
 									:disabled="toWorkshop.loading"
-									hide-details="auto"
-									persistent-hint
-									:hint="`En Fazla ${fabricTypes.stockBallCount} Top Eklenebilir`"></VTextField>
+									hide-details="auto"></VTextField>
 							</div>
 						</div>
 					</VCard>
@@ -363,7 +359,8 @@
 									:disabled="toWorkshop.loading"
 									hide-details="auto"
 									persistent-hint
-									:hint="`En Fazla ${orderItem.count - orderItem.countInWorkshop} Adet Eklenebilir`"></VTextField>
+									:hint="`Siparişte ${orderItem.count - orderItem.countInWorkshop} Adet Mevcut`"
+                  :rules="[rules.positiveNumber]"></VTextField>
 							</div>
 						</div>
 					</VCard>
@@ -1139,12 +1136,12 @@ const toWorkshop: any = ref({
       })
     }
     const findIndex2 = toWorkshop.value.modelpool.toWorkshopOrderRequests[0].usedFabrics?.findIndex((x: any) => x.fabricTypeId === fabricType.id)
-    if (type === 'meter') {
-      toWorkshop.value.modelpool.toWorkshopOrderRequests[0].usedFabrics[findIndex2].meterCount = value > fabricType.stockMeterCount ? fabricType.stockMeterCount : value
-      fabricType.tempMeter = value > fabricType.stockMeterCount ? fabricType.stockMeterCount : value
+     if (type === 'meter') {
+      toWorkshop.value.modelpool.toWorkshopOrderRequests[0].usedFabrics[findIndex2].meterCount = value
+      fabricType.tempMeter = value
     } else {
-      toWorkshop.value.modelpool.toWorkshopOrderRequests[0].usedFabrics[findIndex2].ballCount = value > fabricType.stockBallCount ? fabricType.stockBallCount : value
-      fabricType.tempBall = value > fabricType.stockBallCount ? fabricType.stockBallCount : value
+      toWorkshop.value.modelpool.toWorkshopOrderRequests[0].usedFabrics[findIndex2].ballCount = value
+      fabricType.tempBall = value
     }
     console.log('mooodelpool', toWorkshop.value.modelpool)
   },
@@ -1167,8 +1164,8 @@ const toWorkshop: any = ref({
       })
     }
     const findIndex2 = toWorkshop.value.modelpool.toWorkshopOrderRequests[0].orderItemWorkshops?.findIndex((x: any) => x.meansurementId === orderItem.measurementDTO.id)
-    toWorkshop.value.modelpool.toWorkshopOrderRequests[0].orderItemWorkshops[findIndex2].count = value > availableCount ? availableCount : value
-    orderItem.tempCount = value > availableCount ? availableCount : value
+    toWorkshop.value.modelpool.toWorkshopOrderRequests[0].orderItemWorkshops[findIndex2].count = value
+    orderItem.tempCount = value
     console.log('mooodelpool orderITEMMMM', toWorkshop.value.modelpool)
   },
 })

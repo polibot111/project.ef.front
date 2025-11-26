@@ -31,7 +31,7 @@
 					<v-list-item-title class="d-flex align-center gap-2">
 						<div class="d-flex align-center gap-1">
 							<span v-if="!raw?.colorUrl" class="color-square-mini" :style="`background-color: ${raw?.comboboxValue?.split('/')?.pop()}`"></span>
-							<v-img v-else :src="raw?.colorUrl || raw?.color?.images?.[0]?.path" width="14px" class="rounded border border-gray" />
+								<v-img v-else :src="BASE_URL + (raw?.colorUrl || raw?.color?.images?.[2]?.path)" width="14px" class="rounded border border-gray" />
 							{{ raw.colorName || raw?.color?.name }}
 						</div>
 					</v-list-item-title>
@@ -49,7 +49,7 @@
 						v-if="item.raw?.comboboxValue?.split('/')?.pop()"
 						class="color-square-mini"
 						:style="`background-color: ${item.raw?.comboboxValue?.split('/')?.pop()}`"></span>
-					<v-img v-else :src="item.raw?.colorUrl || item.raw?.color?.images?.[0]?.path" width="22px" class="rounded" />
+						<v-img v-else :src="BASE_URL + (item.raw?.colorUrl || item.raw?.color?.images?.[2]?.path)" width="22px" class="rounded" />
 					{{ item.raw.colorName || item.raw?.color?.name }}
 				</div>
 			</div>
@@ -71,7 +71,7 @@
 				</div>
 			</v-chip>
 			<v-chip v-else class="d-flex align-center gap-2" label variant="outlined">
-				<v-img :src="chipItem.raw?.colorUrl || chipItem.raw?.color?.images?.[0]?.path" width="16px" class="rounded py-2 mr-1" />
+				<v-img :src="BASE_URL + (chipItem.raw?.colorUrl || chipItem.raw?.color?.images?.[2]?.path)" width="16px" class="rounded py-2 mr-1" />
 				<span v-if="chipItem.raw.comboboxValue">{{ chipItem.raw.comboboxValue }}</span>
 				<span v-else>{{ chipItem.raw.code }} | {{ chipItem.raw.name }} | {{ chipItem.raw.colorName || chipItem.raw?.color?.name }}</span>
 			</v-chip>
@@ -80,6 +80,7 @@
 </template>
 <script lang="ts" setup>
 import { computed } from 'vue';
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 interface FabricTypeItem {
   id: string | number;

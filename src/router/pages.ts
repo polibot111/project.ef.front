@@ -48,9 +48,9 @@ import OrderPreviewView from "../views/order-preview-management/preview.vue";
 // ** Payment Management **
 import PaymentManagementView from "../views/payment-management/index.vue";
 
-// ** Storage Management **
-import StorageManagementView from "../views/storage-management/index.vue";
-import StorageSendView from "../views/storage-management/send.vue";
+// // ** Storage Management **
+// import StorageManagementView from "../views/storage-management/index.vue";
+// import StorageSendView from "../views/storage-management/send.vue";
 
 const routes: any = [
 	{
@@ -425,49 +425,49 @@ const routes: any = [
 			icon: "mdi-cash-register",
 		},
 	},
-	{
-		path: "/storage-management",
-		name: "storage-management",
-		meta: {
-			order: 9,
-			layout: "default",
-			level: 0,
-			title: "Depo Yönetimi",
-			menu: true,
-			disabled: false,
-			icon: "mdi-warehouse",
-		},
-		children: [
-			{
-				path: "/storage-management/list",
-				name: "storage-management-list",
-				component: StorageManagementView,
-				meta: {
-					order: 0,
-					layout: "default", 
-					level: 1,
-					title: "Depo Listesi",
-					menu: true,
-					disabled: false,
-					icon: "mdi-warehouse",
-				},
-			},
-			{
-				path: "/storage-management/send",
-				name: "storage-management-send",
-				component: StorageSendView,
-				meta: {
-					order: 1,
-					layout: "default", 
-					level: 1,
-					title: "Depoya Gönderilen",
-					menu: true,
-					disabled: false,
-					icon: "mdi-truck-delivery",
-				},
-			},
-		],
-	},
+	// {
+	// 	path: "/storage-management",
+	// 	name: "storage-management",
+	// 	meta: {
+	// 		order: 9,
+	// 		layout: "default",
+	// 		level: 0,
+	// 		title: "Depo Yönetimi",
+	// 		menu: true,
+	// 		disabled: false,
+	// 		icon: "mdi-warehouse",
+	// 	},
+	// 	children: [
+	// 		{
+	// 			path: "/storage-management/list",
+	// 			name: "storage-management-list",
+	// 			component: StorageManagementView,
+	// 			meta: {
+	// 				order: 0,
+	// 				layout: "default", 
+	// 				level: 1,
+	// 				title: "Depo Listesi",
+	// 				menu: true,
+	// 				disabled: false,
+	// 				icon: "mdi-warehouse",
+	// 			},
+	// 		},
+	// 		{
+	// 			path: "/storage-management/send",
+	// 			name: "storage-management-send",
+	// 			component: StorageSendView,
+	// 			meta: {
+	// 				order: 1,
+	// 				layout: "default", 
+	// 				level: 1,
+	// 				title: "Depoya Gönderilen",
+	// 				menu: true,
+	// 				disabled: false,
+	// 				icon: "mdi-truck-delivery",
+	// 			},
+	// 		},
+	// 	],
+	// },
 ];
 
 export default routes;

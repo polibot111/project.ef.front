@@ -46,11 +46,11 @@
 					<v-tooltip v-else :width="128" :height="128" location="top" content-class="pa-0">
 						<template v-slot:activator="{ props }">
 							<v-chip v-bind="props" class="d-flex align-center" size="x-small" variant="outlined" color="primary py-2">
-								<v-img :src="colorHexList[item.colorId]?.images?.[0]?.path" width="16" height="16" class="rounded mr-1" cover />
+              <v-img :src="colorHexList[item.colorId]?.images?.[2]?.path ? BASE_URL + colorHexList[item.colorId]?.images?.[2]?.path : ''" width="16" height="16" class="rounded mr-1" cover />
 								{{ colorHexList[item.colorId]?.name }}
 							</v-chip>
 						</template>
-						<v-img :src="colorHexList[item.colorId]?.images?.[0]?.path" width="128" height="128" cover class="rounded border shadow-sm border-gray" />
+            <v-img :src="colorHexList[item.colorId]?.images?.[2]?.path ? BASE_URL + colorHexList[item.colorId]?.images?.[2]?.path : ''" width="128" height="128" cover class="rounded border shadow-sm border-gray" />
 					</v-tooltip>
 				</div>
 			</template>
@@ -235,7 +235,7 @@
 								show-size
 								:rules="[
 									(v) => (v || colorModel.rgbCode) || 'Renk kodu veya resim yüklenmelidir',
-									(v) => !v || v[0]?.size <= 10000000 || 'Dosya boyutu 10 MB\'den büyük olamaz'
+									(v) => !v ||  v.size <= 10000000 || 'Dosya boyutu 10 MB\'den büyük olamaz'
 								]">
 								<template v-slot:selection="{ fileNames }">
 									<template v-for="fileName in fileNames" :key="fileName">
@@ -257,10 +257,11 @@ import { toast } from "vue3-toastify"
 import { rules } from "../../../config/rules"
 import { debounce } from "lodash"
 import ConfirmBox from "../../components/ConfirmBox.vue"
-
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 import BtModal from "../../components/BtModal.vue"
 // import { useFetch } from "../../composables/useFetch";
 import $axios from "../../composables/axios"
+
 
 const headers: any = ref([
   { title: "Kod", value: "code", align: "start" },
